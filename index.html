@@ -14,13 +14,15 @@ h3{margin:18px 0 8px;font-size:.8rem;text-transform:uppercase;letter-spacing:.1e
 <body>
 <header>
   <h1>LARP Bags PNW</h1>
-  <p class="sub">My collection, side by side with the real thing.</p>
+  <p class="sub">My collection, side by side with the real thing. · <a href="#contact" style="color:#e8c37c">Contact</a></p>
 </header>
 <div class="notice">
   <strong>Everything here is a replica.</strong> This is my personal LARP collection. Nothing is for sale, and nothing is claimed to be authentic.
   Each piece is listed next to the authentic item it's based on, with that item's price for comparison.
 </div>
-<main id="list"></main>
+<main><div id="list"></div>
+<article class="item" id="contact"><div class="head"><h2>Chat about bags</h2></div><p style="margin:0">Questions about a piece, or just want to talk bags? Email me at <a id="em" style="color:#e8c37c"></a>. Nothing here is for sale.</p></article>
+</main>
 <footer>
   All items shown are replicas. Not affiliated with or endorsed by any brand named here. Brand names are used only to identify the authentic item each piece is modeled on.
   Prices are approximate retail or listing prices, current as of November 2026.
@@ -55,6 +57,7 @@ const items=[
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const g=(a,alt,cls)=>a.length?`<div class="gallery${cls}">${a.map((s,i)=>`<a href="${s}" class="ph"><img src="${s}" loading="lazy" alt="${esc(alt)} ${i+1}"></a>`).join('')}</div>`:'';
 document.getElementById('list').innerHTML=items.map(([n,real,price,notes,ph,ref])=>`<article class="item"><div class="head"><h2>${esc(n)}</h2><span class="tag">Replica</span></div>${g(ph,n+' replica, photo','')}<dl><div><dt>The real one</dt><dd>${esc(real)}</dd></div><div><dt>Price of the real one</dt><dd class="price">${esc(price)}</dd></div><div><dt>How mine compares</dt><dd>${esc(notes)}</dd></div></dl>${ref.length?'<h3>The real thing</h3>'+g(ref,n+' reference photo',' ref'):''}</article>`).join('');
+const u='larpBagsPNW',d='proton.me',em=document.getElementById('em');em.href='mailto:'+u+'@'+d;em.textContent=u+'@'+d;
 const lb=document.getElementById('lb'),li=lb.querySelector('img');
 document.querySelectorAll('a.ph').forEach(a=>a.onclick=e=>{e.preventDefault();li.src=a.href;lb.hidden=false;});
 lb.onclick=()=>{lb.hidden=true;li.src='';};
